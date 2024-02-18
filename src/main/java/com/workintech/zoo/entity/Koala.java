@@ -21,8 +21,4 @@ public class Koala {
     Double weight;
     Integer sleepHour;
     Gender gender;
-
-
-
-
 }

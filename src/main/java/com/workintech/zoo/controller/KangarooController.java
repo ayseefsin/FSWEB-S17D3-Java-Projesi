@@ -1,6 +1,8 @@
 package com.workintech.zoo.controller;
 
 import com.workintech.zoo.entity.Kangaroo;
+import com.workintech.zoo.exceptions.ZooException;
+import com.workintech.zoo.validation.ZooValidation;
 import jakarta.annotation.PostConstruct;
 
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,7 @@ public class KangarooController {
     }
     @GetMapping("/{id}")
     public Kangaroo getKangarooById(@PathVariable("id") Integer id){
+        ZooValidation.isValid(id);
         return kangaroos.get(id);
     }
     @PostMapping
@@ -36,6 +39,7 @@ public class KangarooController {
     }
     @PutMapping("/{id}")
     public Kangaroo updateKangaroo(@PathVariable("id") Integer id, @RequestBody Kangaroo kangaroo){
+        ZooValidation.isValid(id);
         if(kangaroos.containsKey(id)){
             kangaroo.setId(id);
             kangaroos.put(id, kangaroo);
@@ -46,6 +50,7 @@ public class KangarooController {
     }
     @DeleteMapping("/{id}")
     public Kangaroo deleteKangaroo(@PathVariable("id") Integer id){
+        ZooValidation.isValid(id);
        return kangaroos.remove(id);
     }
 
